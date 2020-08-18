@@ -1,0 +1,11 @@
+@charset 'UTF-8';
+body {
+    background-color: navajowhite;
+    font-family: 'Kosugi Maru', 'Sawarabi Gothic','Roboto Mono', sans-serif;
+    font-size: medium;
+    color: red;
+}
+h3 {
+    font-family: 'Sawarabi Gothic','Roboto Mono', sans-serif;
+    font-size: large;
+}

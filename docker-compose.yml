@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  app:
+    build: .
+    image: icc-heroku
+    container_name: icc-heroku
+    restart: always
+    ports:
+      - 80:5000

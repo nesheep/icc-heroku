@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2 class="text-center mt-5">好きな画像を配色パターンに変換します</h1>
+<div class="container mt-5">
+<form action="/upload" method="post" enctype="multipart/form-data">
+  <div class="row mt-5"><input type="file" name="image" accept="image/png, image/jpeg" class="col-12"></div>
+  <div class="row mt-5"><h5 class="text-center col-12">配色の数を入力してください
+  </h5></div>
+  <div class="row justify-content-center mt-2"><input type="number" name="clusterN" col-4></div>
+  <div class="row justify-content-center mt-5"><button type="submit">変換！</button>
+  </div>
+</form>
+</div>
+
+<hr>
+
+<div class="container mt-5">
+{% if images %}
+  {% for path in images %}
+    <div class="row">
+      <div class="col-6"><img src="images/{{ path }}" style="margin-top: 10px; vertical-align: bottom; width: 200px;"></div>
+      <div class="col-6 d-flex align-items-center"><h5 class="text-center">{{ path }}</h5></div>
+    </div>
+  {% endfor %}
+{% endif %}
+</div>
+{% endblock %}
