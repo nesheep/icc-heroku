@@ -8,7 +8,7 @@ import shutil
 import string
 
 #加工画像の保存先フォルダを確認・作成
-SAVE_DIR = "./app/images"
+SAVE_DIR = "./images"
 if not os.path.isdir(SAVE_DIR):
     os.mkdir(SAVE_DIR)
 
@@ -21,7 +21,7 @@ def index():
     return render_template('index.html', images=os.listdir(SAVE_DIR)[::-1])
 
 #ディレクトリからのダウンロード
-@app.route('/app/images/<path:filename>')
+@app.route('/images/<path:filename>')
 def send_js(filename):
     return send_from_directory(SAVE_DIR, filename)
 
