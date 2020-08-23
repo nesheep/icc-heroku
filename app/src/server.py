@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+from flask import Flask, render_template, abort, request, redirect, url_for, send_from_directory
 import numpy as np
 import cv2
 import image_converting as imcon
 from datetime import datetime
 import os
+import shutil
 import string
 
 #加工画像の保存先フォルダを確認・作成
@@ -24,9 +25,13 @@ def index():
 def send_js(filename):
     return send_from_directory(SAVE_DIR, filename)
 
+@app.errorhandler(404)
+def page_not_found(error):
+    return redirect('/')
+
 @app.route('/upload', methods=['POST'])
 def upload():
-    if request.files['image']:
+    if request.form['btn'] == 'send' and request.files['image'] and request.form['clusterN']:
 
         #クラスター数の入力情報取得
         k=request.form.get('clusterN')
@@ -47,6 +52,15 @@ def upload():
         print("save", save_path)
 
         return redirect('/')
+    
+    elif request.form['btn'] == 'delete':
+        data=os.listdir(SAVE_DIR)
+        for i in data:
+            os.remove(SAVE_DIR + "/" + i)
+        return render_template('index.html')
+    else:
+        abort(404)
+
 
 if __name__=="__main__":
     app.run(debug=True,host="0.0.0.0",port=os.environ.get('PORT', 5000),threaded=True)
