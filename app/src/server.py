@@ -58,6 +58,7 @@ def upload():
         for i in data:
             os.remove(SAVE_DIR + "/" + i)
         return render_template('index.html')
+        
     else:
         abort(404)
 
