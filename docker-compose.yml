@@ -6,4 +6,4 @@ services:
     container_name: icc-heroku
     restart: always
     ports:
-      - 80:5000
+      - 5000:5000
