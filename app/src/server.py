@@ -8,7 +8,7 @@ import shutil
 import string
 
 #加工画像の保存先フォルダを確認・作成
-SAVE_DIR = "./images"
+SAVE_DIR = "/images"
 if not os.path.isdir(SAVE_DIR):
     os.mkdir(SAVE_DIR)
 
@@ -58,7 +58,7 @@ def upload():
         for i in data:
             os.remove(SAVE_DIR + "/" + i)
         return render_template('index.html')
-        
+
     else:
         abort(404)
 
