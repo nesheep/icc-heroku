@@ -9,4 +9,5 @@ RUN apt-get update -y && apt-get install -y libopencv-dev \
     && rm -rf /var/lib/apt/lists/*
 RUN pip install -r requirements.txt
 
-CMD cd src && gunicorn server:app -c config/gunicorn_conf.py
+WORKDIR /app/src
+CMD gunicorn server:app -c config/gunicorn_conf.py
