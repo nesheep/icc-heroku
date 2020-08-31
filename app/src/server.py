@@ -40,6 +40,10 @@ def upload():
         stream = request.files['image'].stream
         img_array = np.asarray(bytearray(stream.read()), dtype=np.uint8)
         img = cv2.imdecode(img_array, 1)
+        height, width, channels = img.shape[:3]
+
+        #リサイズ
+        img = cv2.resize(img, (height//4, width//4))
 
         # 変換
         x,y,z = imcon.Kmeans(img,int(k))
